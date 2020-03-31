@@ -2,7 +2,10 @@ import React, { useState } from 'react';
 
 import { Container, Content } from './styles';
 
-import { ResponsiveContainer, BarChart, XAxis, YAxis, Tooltip, Legend, CartesianGrid, Bar } from 'recharts';
+import { ResponsiveContainer, BarChart, XAxis, YAxis, Tooltip, CartesianGrid, Bar, Cell } from 'recharts';
+
+
+const colors = ["#112F41","#068587","#4FB99F","#F2B134","#ED553B","#F58B53","#F06F3E","#8B4B62","#BB6F6B","#EA9674",];
 
 /*
 
@@ -73,9 +76,14 @@ export default function App() {
             <XAxis dataKey="name" stroke="#8884d8" />
             <YAxis />
             <Tooltip wrapperStyle={{ width: 100, backgroundColor: '#ccc' }} />
-            <Legend width={100} wrapperStyle={{ top: 40, right: 20, backgroundColor: '#f5f5f5', border: '1px solid #d5d5d5', borderRadius: 3, lineHeight: '40px' }} />
             <CartesianGrid stroke="#ccc" strokeDasharray="5 5" />
-            <Bar dataKey="uv" fill="#8884d8" barSize={30} />
+            <Bar dataKey="uv" fill="#7159C1" barSize={30} >
+              {
+                data.map((entry, index) => (
+                <Cell key={`cell-${index}`} fill={colors[index % 20]} />
+                ))
+              } 
+            </Bar>
           </BarChart>
         </ResponsiveContainer>
       : null } 
